@@ -1,0 +1,25 @@
+<%= form_for(@beer_review) do |f| %>
+  <% if @beer_review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@beer_review.errors.count, "error") %> prohibited this beer_review from being saved:</h2>
+
+      <ul>
+      <% @beer_review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :rating %>
+    <%= f.number_field :rating, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :comments %>
+    <%= f.text_area :comments, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

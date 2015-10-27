@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @beer_review.rating %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @beer_review.comments %>
+</p>
+
+<%= link_to 'Edit', edit_beer_review_path(@beer_review) %> |
+<%= link_to 'Back', beer_reviews_path %>
