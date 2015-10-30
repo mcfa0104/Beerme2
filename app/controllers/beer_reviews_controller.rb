@@ -1,5 +1,6 @@
 class BeerReviewsController < ApplicationController
   before_action :set_beer_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /beer_reviews
   # GET /beer_reviews.json
@@ -25,6 +26,7 @@ class BeerReviewsController < ApplicationController
   # POST /beer_reviews.json
   def create
     @beer_review = BeerReview.new(beer_review_params)
+    @beer_review.userid = current_user.id #current_user is a devise method
 
     respond_to do |format|
       if @beer_review.save
