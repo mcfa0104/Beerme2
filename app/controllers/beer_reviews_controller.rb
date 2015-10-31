@@ -3,12 +3,6 @@ class BeerReviewsController < ApplicationController
   before_action :set_restaurant
   before_action :authenticate_user!
 
-  # GET /beer_reviews
-  # GET /beer_reviews.json
-  def index
-    @beer_reviews = BeerReview.all
-  end
-
   # GET /beer_reviews/new
   def new
     @beer_review = BeerReview.new
@@ -27,7 +21,7 @@ class BeerReviewsController < ApplicationController
 
     respond_to do |format|
       if @beer_review.save
-        format.html { redirect_to root_path, notice: 'Beer review was successfully created.' }
+        format.html { redirect_to @restaurant, notice: 'Beer review was successfully created.' }
         format.json { render :show, status: :created, location: @beer_review }
       else
         format.html { render :new }
