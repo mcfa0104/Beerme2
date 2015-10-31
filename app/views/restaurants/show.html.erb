@@ -1,27 +1,39 @@
-<%= image_tag @restaurant.image_url %>
+<div class="row">
+	<div class="col-md-3">
+		<%= image_tag @restaurant.image_url %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+		<h3>
+		  <strong><%= @restaurant.name %></strong>
+		</h3>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
+		<p>
+		  <strong>Address:</strong>
+		  <%= @restaurant.address %>
+		</p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @restaurant.phone %>
-</p>
+		<p>
+		  <strong>Phone:</strong>
+		  <%= @restaurant.phone %>
+		</p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @restaurant.website %>
-</p>
+		<p>
+		  <strong>Website:</strong>
+		  <%= link_to @restaurant.website, "http://" + @restaurant.website, class: "btn btn-link", target: "_blank" %>
+		</p>
+	</div>
 
-<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
-<br />
+	<div class="col-md-9">
+		<% if @breviews.blank? %>
+			<h4>No Beer Reviews for this restaurant.  Be the first to let us know about the best beers they have!</h4>
+		<% else %>
+			<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
+
+			<% @breviews.each do |beerreview| %>
+				<p><%= beerreview.rating.to_s + ', ' + beerreview.comments %></p>
+			<% end %>
+		<% end %>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link" %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link" %>
