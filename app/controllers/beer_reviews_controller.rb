@@ -1,5 +1,6 @@
 class BeerReviewsController < ApplicationController
   before_action :set_beer_review, only: [:edit, :update, :destroy]
+  before_action :set_restaurant
   before_action :authenticate_user!
 
   # GET /beer_reviews
@@ -22,6 +23,7 @@ class BeerReviewsController < ApplicationController
   def create
     @beer_review = BeerReview.new(beer_review_params)
     @beer_review.userid = current_user.id #current_user is a devise method
+    @beer_review.restaurantid = @restaurant.id #sets the value of the restaurant id for the database
 
     respond_to do |format|
       if @beer_review.save
@@ -39,7 +41,7 @@ class BeerReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @beer_review.update(beer_review_params)
-        format.html { redirect_to @beer_review, notice: 'Beer review was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Beer review was successfully updated.' }
         format.json { render :show, status: :ok, location: @beer_review }
       else
         format.html { render :edit }
@@ -53,7 +55,7 @@ class BeerReviewsController < ApplicationController
   def destroy
     @beer_review.destroy
     respond_to do |format|
-      format.html { redirect_to beer_reviews_url, notice: 'Beer review was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Beer review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -62,6 +64,11 @@ class BeerReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_beer_review
       @beer_review = BeerReview.find(params[:id])
+    end
+
+    #used to match the post/beer_review to the restaurant
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

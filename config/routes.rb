@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  resources :beer_reviews, except: [:show]
   devise_for :users
-  resources :restaurants
+  resources :restaurants do
+    resources :beer_reviews, except: [:show]
+  end
   get 'pages/about'
 
   get 'pages/contact'
 
-  #root 'restaurants#index'
-  root 'beer_reviews#index'
+  root 'restaurants#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
