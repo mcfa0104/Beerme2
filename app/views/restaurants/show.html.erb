@@ -6,6 +6,9 @@
 		  <strong><%= @restaurant.name %></strong>
 		</h3>
 
+		<div class="star-rating" data-score= <%= @avg_rating %> ></div>
+		<p style="font-size: 8pt"><%= "#{@breviews.length} Beer Reviews" %></p>
+
 		<p>
 		  <strong>Address:</strong>
 		  <%= @restaurant.address %>
@@ -27,11 +30,18 @@
 			<h4>No Beer Reviews for this restaurant.  Be the first to let us know about the best beers they have!</h4>
 		<% else %>
 			<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
-
-			<% @breviews.each do |beerreview| %>
-				<div class="star-rating" data-score= <%= beerreview.rating %> ></div>
-				<p><%= beerreview.comments %></p>
-			<% end %>
+			<table class="table">
+				<tbody>
+					<% @breviews.each do |beerreview| %> 
+						<tr>
+							<td>
+								<div class="star-rating" data-score= <%= beerreview.rating %> ></div>
+								<p><%= h(beerreview.comments).gsub(/\n/, '<br />').html_safe %></p>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
 		<% end %>
 	</div>
 </div>
