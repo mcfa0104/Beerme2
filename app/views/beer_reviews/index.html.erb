@@ -14,7 +14,6 @@
       <tr>
         <td><%= beer_review.rating %></td>
         <td><%= beer_review.comments %></td>
-        <td><%= link_to 'Show', beer_review, class: "btn btn-link"  %></td>
         <td><%= link_to 'Edit', edit_beer_review_path(beer_review), class: "btn btn-link"  %></td>
         <td><%= link_to 'Destroy', beer_review, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link"  %></td>
       </tr>

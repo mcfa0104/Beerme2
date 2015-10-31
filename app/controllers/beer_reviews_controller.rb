@@ -1,16 +1,11 @@
 class BeerReviewsController < ApplicationController
-  before_action :set_beer_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_beer_review, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /beer_reviews
   # GET /beer_reviews.json
   def index
     @beer_reviews = BeerReview.all
-  end
-
-  # GET /beer_reviews/1
-  # GET /beer_reviews/1.json
-  def show
   end
 
   # GET /beer_reviews/new
@@ -30,7 +25,7 @@ class BeerReviewsController < ApplicationController
 
     respond_to do |format|
       if @beer_review.save
-        format.html { redirect_to @beer_review, notice: 'Beer review was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Beer review was successfully created.' }
         format.json { render :show, status: :created, location: @beer_review }
       else
         format.html { render :new }

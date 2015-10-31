@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :beer_reviews
+  resources :beer_reviews, except: [:show]
   devise_for :users
   resources :restaurants
   get 'pages/about'
