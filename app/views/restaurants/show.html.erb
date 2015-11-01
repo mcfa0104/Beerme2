@@ -23,13 +23,13 @@
 		  <strong>Website:</strong>
 		  <%= link_to @restaurant.website, "http://" + @restaurant.website, class: "btn btn-link", target: "_blank" %>
 		</p>
+		<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
 	</div>
 
 	<div class="col-md-9">
 		<% if @beer_reviews.blank? %>
 			<h4>No Beer Reviews for this restaurant.  Be the first to let us know about the best beers they have!</h4>
 		<% else %>
-			<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
 			<table class="table">
 				<thead>
 					<tr>
@@ -42,7 +42,12 @@
 						<tr>
 							<td>
 								<h4>
-									<%= beerreview.userid %>
+									<% if beerreview.user.nil? %>
+										<%= "#{'No User'}" %>
+									<% else %>
+										<%= "#{beerreview.first_name.present? ? beerreview.user.first_name.capitalize : '<missing>'}" %>
+										<%= "#{beerreview.last_name.present? ? beerreview.user.last_name.capitalize[0] : '<missing>'}" %>
+									<% end %>
 								</h4>
 								<p> <%= beerreview.created_at.strftime("%-m/%-d/%y %l:%M %P") %>
 								</p>
