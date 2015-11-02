@@ -2,6 +2,7 @@ class BeerReviewsController < ApplicationController
   before_action :set_beer_review, only: [:edit, :update, :destroy]
   before_action :set_restaurant
   before_action :authenticate_user!
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /beer_reviews/new
   def new
@@ -49,7 +50,7 @@ class BeerReviewsController < ApplicationController
   def destroy
     @beer_review.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Beer review was successfully destroyed.' }
+      format.html { redirect_to restaurant_path(@restaurant), notice: 'Beer review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,5 +69,11 @@ class BeerReviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_review_params
       params.require(:beer_review).permit(:rating, :comments)
+    end
+
+    def check_user
+      unless (@beer_review.user == current_user) || (current_user.admin?)
+        redirect_to root_url, alert: "Sorry, this review belongs to someone else"
+      end
     end
 end

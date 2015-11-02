@@ -51,6 +51,14 @@
 								</h4>
 								<p> <%= beerreview.created_at.strftime("%-m/%-d/%y %l:%M %P") %>
 								</p>
+								<div style="font-size: 8pt">
+									<% if user_signed_in? %>
+									  <% if (beerreview.user == current_user) || (current_user.admin?) %>
+									    <%= link_to "Edit", edit_restaurant_beer_review_path(@restaurant, beerreview) %>
+									    <%= link_to "Delete", restaurant_beer_review_path(@restaurant, beerreview), method: :delete %>
+									  <% end %>
+									<% end %>
+								</div>
 							</td>
 							<td>
 								<div class="star-rating" data-score= <%= beerreview.rating %> ></div>
@@ -63,9 +71,6 @@
 		<% end %>
 	</div>
 </div>
-<%= debug(@beer_reviews) %>
-<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link" %> |
-<%= link_to 'Back', restaurants_path, class: "btn btn-link" %>
 
 <script>
 	$('.star-rating').raty({path: "https://s3.amazonaws.com/beermeduncan/rating/",
