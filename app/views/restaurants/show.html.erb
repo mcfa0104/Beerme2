@@ -21,7 +21,7 @@
 
 		<p>
 		  <strong>Website:</strong>
-		  <%= link_to @restaurant.website, "http://" + @restaurant.website, class: "btn btn-link", target: "_blank" %>
+		  <%= link_to @restaurant.website, @restaurant.website, class: "btn btn-link", target: "_blank" %>
 		</p>
 		<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
 	</div>
@@ -43,7 +43,7 @@
 							<td>
 								<h4>
 									<% if beerreview.user.nil? %>
-										<%= "#{'No User'}" %>
+										<%= "#{beerreview.userid}" %>
 									<% else %>
 										<%= "#{beerreview.first_name.present? ? beerreview.user.first_name.capitalize : '<missing>'}" %>
 										<%= "#{beerreview.last_name.present? ? beerreview.user.last_name.capitalize[0] : '<missing>'}" %>
@@ -63,7 +63,7 @@
 		<% end %>
 	</div>
 </div>
-
+<%= debug(@beer_reviews) %>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link" %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link" %>
 

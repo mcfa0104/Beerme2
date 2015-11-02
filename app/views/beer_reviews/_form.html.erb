@@ -1,7 +1,8 @@
 <%= form_for([@restaurant, @beer_review]) do |f| %>
   <% if @beer_review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@beer_review.errors.count, "error") %> prohibited this beer_review from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4><%= pluralize(@beer_review.errors.count, "error") %> prohibited this beer_review from being saved:</h4>
 
       <ul>
       <% @beer_review.errors.full_messages.each do |message| %>
