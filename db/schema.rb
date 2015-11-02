@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20151031215039) do
     t.text     "comments"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "userid"
+    t.integer  "user_id"
     t.integer  "restaurantid"
   end
 

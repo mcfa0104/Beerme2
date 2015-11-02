@@ -43,10 +43,10 @@
 							<td>
 								<h4>
 									<% if beerreview.user.nil? %>
-										<%= "#{beerreview.userid}" %>
+										<%= "#{beerreview.user_id}" %>
 									<% else %>
-										<%= "#{beerreview.first_name.present? ? beerreview.user.first_name.capitalize : '<missing>'}" %>
-										<%= "#{beerreview.last_name.present? ? beerreview.user.last_name.capitalize[0] : '<missing>'}" %>
+										<%= "#{beerreview.user.first_name.present? ? beerreview.user.first_name.capitalize : '<missing>'}" %>
+										<%= "#{beerreview.user.last_name.present? ? beerreview.user.last_name.capitalize[0] : '<missing>'}" %>
 									<% end %>
 								</h4>
 								<p> <%= beerreview.created_at.strftime("%-m/%-d/%y %l:%M %P") %>

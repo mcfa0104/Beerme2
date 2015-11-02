@@ -16,7 +16,7 @@ class BeerReviewsController < ApplicationController
   # POST /beer_reviews.json
   def create
     @beer_review = BeerReview.new(beer_review_params)
-    @beer_review.userid = current_user.id #current_user is a devise method
+    @beer_review.user_id = current_user.id #current_user is a devise method
     @beer_review.restaurantid = @restaurant.id #sets the value of the restaurant id for the database
 
     respond_to do |format|
