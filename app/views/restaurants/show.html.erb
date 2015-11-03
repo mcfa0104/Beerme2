@@ -23,7 +23,23 @@
 		  <strong>Website:</strong>
 		  <%= link_to @restaurant.website, @restaurant.website, class: "btn btn-link", target: "_blank" %>
 		</p>
+		<% if (user_signed_in?) && (current_user.admin?) %>
+		    <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant) %>
+		    <%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete %>
+			<br />
+		<% end %>
 		<%= link_to 'New Review', new_restaurant_beer_review_path(@restaurant), class: "btn btn-primary" %>
+		<br />
+		<br />
+		<iframe 
+			width="250" 
+			height="250" 
+			frameborder="0" 
+			style="border:0" 
+			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyALx2ueWjq_cPKIokhTzJiML0QhqosVuD8&q=<%= @restaurant.address.parameterize %>" 
+			allowfullscreen>
+		</iframe>
+
 	</div>
 
 	<div class="col-md-9">
