@@ -37,6 +37,13 @@
     <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
   </div>
 
+  <% if user_signed_in? && (current_user.admin? || User.count < 2) %>
+    <div class="form-group">
+      <%= f.label :admin %> <i>(check this only if you are an admin, if you check it and you are not an admin the system will delete itself!)</i>
+      <%= f.check_box :admin, class: "checkbox" %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Update", class: "btn btn-primary" %>
   </div>

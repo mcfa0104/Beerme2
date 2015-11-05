@@ -36,6 +36,8 @@ gem "figaro"
 gem "mini_magick"
 # used for user management
 gem 'devise'
+# used for searching
+gem 'searchkick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

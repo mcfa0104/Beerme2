@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :beer_reviews
 
-  validates :first_name, :last_name, :password_confirmation, presence: true 
+  validates :first_name, :last_name, presence: true 
 end
