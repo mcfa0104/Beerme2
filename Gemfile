@@ -38,6 +38,10 @@ gem "mini_magick"
 gem 'devise'
 # used for searching
 gem 'searchkick'
+# oauth is used to authenticate google, facebook and twitter
+gem 'omniauth'
+# this is the google oauth gem
+gem 'omniauth-google-oauth2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
